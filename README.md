@@ -8,12 +8,14 @@ Este es un sistema simple de recetas médicas desarrollado en Python utilizando 
 
 - Python 3 instalado.
 - Biblioteca `tkinter` incluida en la instalación de Python.
+- Un sistema ESP32
 
 ## Instrucciones de Uso
-
-1. Ejecute el archivo Python (`inter.py`).
-2. Ingrese el nombre del paciente en la ventana principal y haga clic en el botón "Aceptar".
-3. Se abrirá una nueva ventana con el menú principal que le permitirá:
+1. Agregua al ESP32 dispensador_freeRTOS.ino como sistema de booteo
+2. Conecte el ESP32 a los motores, LEDs y el boton
+3. Ejecute el archivo Python (`inter.py`).
+4. Ingrese el nombre del paciente en la ventana principal y haga clic en el botón "Aceptar".
+5. Se abrirá una nueva ventana con el menú principal que le permitirá:
    - Agregar una receta.
    - Consultar recetas existentes para el paciente.
    - Salir del sistema.
