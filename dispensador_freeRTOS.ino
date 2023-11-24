@@ -15,6 +15,8 @@ int c_tl;
 int f_pf;
 int c_pf;
 
+int Inicio = 1;
+
 int filaPines[] = {18, 32, 33, 25};
 int columnaPines[] = {26, 27, 14, 12};
 
@@ -175,6 +177,14 @@ void turnLEDs(void) {
 void pathFind(void *parameter) {
   while (1 ) {
     
+    if (Inicio == 1) {
+      xQueueReceive(fila_q2pf, &(f_pf), (TickType_t) 1);
+      xQueueReceive(columna_q2pf, &(c_pf), (TickType_t) 1);
+      Inicio = 0;
+    }
+
+    
+
     vTaskSuspend(RECEIVERWIFI);
     vTaskResume(SYSTEM);
     int pos_i[] = {0,0};
@@ -188,6 +198,8 @@ void pathFind(void *parameter) {
       Serial.println("[PATHFINDER] Esperando Columna");
     }
     ledrojo();
+    Serial.println("[DEBUG] FILA: " + String(f_pf));
+    Serial.println("[DEBUG] Columna: " + String(c_pf));
     int pos[] = {f_pf, c_pf};
 
     Serial.println("[PATHFINDER][DESTINO] " + String(pos[0] + String(pos[1])));
@@ -328,6 +340,7 @@ void motorcolumna(void) {
 
 void boton(void *parameter) {
   while (1) {
+    Inicio = 1;
     int valor = digitalRead(35);
     ledverde();
     Serial.println("Valor leído en pin 35: " + String(valor));
